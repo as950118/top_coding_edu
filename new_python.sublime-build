@@ -1,0 +1,9 @@
+{
+  "selector": "source.python",
+    "windows": {
+        "shell_cmd": "start \"$file_name\" cmd /c \"python $file_name & pause\"",
+    },
+    "linux": {
+        "shell_cmd": "xterm -T \"$file_name\" -e \"python $file_name; echo Press enter to exit... & read\"",
+    }
+}
