@@ -45,10 +45,9 @@ class Blockchain(object):
 
     @staticmethod
     def hash(block):
-        # block_string = json.dumps(block, sort_keys=True).encode()
-        # return hashlib.sha256(block_string).hexdigest()
-        return hashlib.sha256(block).hexdigest()
-
+        block_string = json.dumps(block, sort_keys=True).encode()
+        return hashlib.sha256(block_string).hexdigest()
+        
     @property
     def last_block(self):
         return self.chain[-1] # 인덱싱 ==> -1 = 마지막
@@ -74,4 +73,21 @@ class Blockchain(object):
         # 앞에 0이 몇개있는지 확인할 수 있음
         # 지금은 난스가 58인지 확인
         return guess_hash[:4] == "0000"
-        
+
+    
+# 테스트
+if __name__ == '__main__':
+    block = Blockchain()
+    print(block.last_block)
+    block.new_block(100)
+    print(block.last_block)
+
+    block.new_transaction('A','B',10)
+    print(block.last_block)
+    block.new_transaction('B','C',20)
+    print(block.last_block)
+
+    block.new_block(100)
+    print(block.last_block)
+    block.new_block(100)
+    print(block.last_block)        
