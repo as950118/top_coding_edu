@@ -1,0 +1,57 @@
+a, b = map(str, input().split())
+len_a = len(a)
+len_b = len(b)
+min_len = min(len_a, len_b)
+
+next_c = 0
+ret = ''
+for i in range(1, min_len+1):
+	temp_a = int(a[-i])
+	temp_b = int(b[-i])
+	temp_c = temp_a + temp_b + next_c
+	if temp_c == 3:
+		next_c = 1
+		temp_c = 1
+	elif temp_c == 2:
+		next_c = 1
+		temp_c = 0
+	else:
+		next_c = 0
+	ret = str(temp_c) + ret
+# 자리수가 같을때
+if len_a == len_b:
+	if next_c:
+		ret = str(next_c) + ret
+# 자리수가 다를때
+else:
+	# a가 긴 경우
+	if len_a > len_b:
+		for i in range(min_len+1, len_a+1):
+			temp_a = int(a[-i])
+			temp_c = temp_a + next_c
+			if temp_c == 3:
+				next_c = 1
+				temp_c = 1
+			elif temp_c == 2:
+				next_c = 1
+				temp_c = 0
+			else:
+				next_c = 0
+			ret = str(temp_c) + ret
+	# b가 긴 경우
+	else:
+		for i in range(min_len+1, len_b+1):
+			temp_b = int(b[-i])
+			temp_c = temp_b + next_c
+			if temp_c == 3:
+				next_c = 1
+				temp_c = 1
+			elif temp_c == 2:
+				next_c = 1
+				temp_c = 0
+			else:
+				next_c = 0
+			ret = str(temp_c) + ret
+	if next_c:
+		ret = str(next_c) + ret
+print(ret)
