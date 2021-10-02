@@ -1,32 +1,32 @@
 '''
-유진수
-어떤 자연수를 앞뒤로 나눠서 
-앞뒤의 각각의 자리수를 곱했을때 같을 경우
-'''
-'''
 문제정의
-어떤 수가 주어졌을때
-이수가 유진수인지 판단
+어떤 x가 주어졌을때
+해당 수를 뒤집은 수를 reverse x 할때
+주어진 x, y에 대해
+reverse x + reverse y 를 구해라 
 '''
 '''
 문제해결방법
-각 자리수별로 나눠서 계산해보기
+reverse 하는 방법을 구하기
+indexing 활용
+
+iter_object[start:end:step]
+기본값 => start=0 / end=iter_object길이 / step=1
+즉,
+iter_object[::-1]
+iter_object[0:len(iter_object):-1]
 '''
-def func(number:str):
-	ret = 1 # result:결과값
-	for i in number:
-		ret *= int(i)
-	return ret
+def reverse(number:str):
+	return int(number[::-1])
 
-def main():
-	N = str(input())
-	length = len(N)
+x, y = map(str, input().split())
+x_y = reverse(x) + reverse(y)
+str_x_y = str(x_y)
+print(reverse(str_x_y))
 
-	for i in range(1,length):
-		former = N[:i] # 문자열이므로 인덱싱가능
-		latter = N[i:]
-		if func(former) == func(latter):
-			return "YES"
-	return "NO"
 
-print(main())
+
+
+
+
+
